@@ -6,16 +6,19 @@ function Calculator() {
   const [operation, setOperation] = useState('');
 
   const handleNumberClick = (number) => {
-    if (result === '0') {
+    if (result === '0' || operation) {
       setResult(number);
+      setOperation('');
     } else {
       setResult(result + number);
     }
   };
 
   const handleOperatorClick = (operator) => {
+    if (result !== '0') {
+      handleEqualClick(); // Realiza la operación actual
+    }
     setOperation(operator);
-    setResult('0');
   };
 
   const handleEqualClick = () => {
